@@ -74,7 +74,7 @@ namespace ChatApp.ViewModels
 
         void OnBack()
         {
-            NavigationService.Instance.NavigateBackAsync();
+            _ = NavigationService.Instance.NavigateBackAsync();
         }
 
         void OnSendMessageCommand()
