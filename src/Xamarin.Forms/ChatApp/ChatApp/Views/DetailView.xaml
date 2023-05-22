@@ -171,10 +171,12 @@
                     <Grid
                         RowDefinitions="*, Auto">
                         <Grid>
-                            <CollectionView 
+                            <CollectionView
+                                x:Name="_messagesCollectionView"
                                 ItemsSource="{Binding Messages}"
                                 ItemTemplate="{StaticResource MessageDataTemplateSelector}"
                                 Style="{StaticResource ChatCollectionStyle}" />
+                                
                         </Grid>
                         <Frame
                             Grid.Row="1"
@@ -182,6 +184,7 @@
                             <Grid
                                 ColumnDefinitions="*, Auto">
                                 <controls:BorderlessEntry
+                                    Text="{Binding EntryMessage}"                
                                     Placeholder="Type your message..."
                                     Style="{StaticResource ChatEntryStyle}"/>
                                 <Grid
@@ -198,6 +201,11 @@
                                                 Color="White"
                                                 Size="12" /> 
                                         </Image.Source>
+                                        <!--タップしたら処理を実行します。-->
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                    Command="{Binding SendMessageCommand}" />
+                                        </Image.GestureRecognizers>
                                     </Image>
                                 </Grid>
                             </Grid>

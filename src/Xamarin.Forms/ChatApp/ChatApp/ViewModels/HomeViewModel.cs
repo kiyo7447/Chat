@@ -42,6 +42,8 @@ namespace ChatApp.ViewModels
         {
             Users = new ObservableCollection<User>(MessageService.Instance.GetUsers());
             RecentChat = new ObservableCollection<Message>(MessageService.Instance.GetChats());
+
+            //RecentChat.Add(new Message { Sender = sender, Text = "かずま", Time = "12:00" });
         }
 
         void OnNavigate(object parameter)
