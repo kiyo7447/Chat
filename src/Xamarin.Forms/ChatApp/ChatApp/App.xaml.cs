@@ -1,4 +1,5 @@
-﻿using ChatApp.Views;
+﻿using ChatApp.Services;
+using ChatApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
@@ -12,6 +13,10 @@ namespace ChatApp
             Current.On<Windows>().SetImageDirectory("Assets");
 
             InitializeComponent();
+
+            //DeviceServcieをDIコンテナに登録する
+            DependencyService.Register<DeviceService>();
+            //DeviceService = new DeviceService(Xamarin.Essentials.Preferences);
 
             MainPage = new NavigationPage(new HomeView());
         }

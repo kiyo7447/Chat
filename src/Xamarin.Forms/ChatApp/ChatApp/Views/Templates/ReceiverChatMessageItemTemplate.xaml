@@ -38,7 +38,7 @@
             ColumnDefinitions="Auto, *"
             Style="{StaticResource MessageContainerStyle}">
             <Label
-                Text="{Binding Time}"
+                Text="{Binding DisplaySendDateTime}"
                 Style="{StaticResource TimeTextStyle}"/>
             <Grid 
                 Grid.Column="1">

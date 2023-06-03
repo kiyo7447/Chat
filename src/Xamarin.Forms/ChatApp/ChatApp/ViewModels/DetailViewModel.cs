@@ -83,9 +83,9 @@ namespace ChatApp.ViewModels
             if (string.IsNullOrEmpty(_entiryMessage))
                 return;
 
-            _messages.Add(new Message { Sender = _user, Text = "かずま", Time = "12:00" });
+            _messages.Add(new Message { Sender = _user, Text = "かずま", SendDateTime = DateTime.Now });
 
-            _messages.Add(new Message { Sender = null, Text = _entiryMessage, Time = "12:30" });
+            _messages.Add(new Message { Sender = null, Text = _entiryMessage, SendDateTime = DateTime.Now });
             //NavigationService.Instance.NavigateBackAsync();
 
             //入力したメッセージをクリアする

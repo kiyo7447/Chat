@@ -83,7 +83,7 @@
                 </StackLayout>
                 <Label 
                     Grid.Column="1"
-                    Text="{Binding Time}"
+                    Text="{Binding DisplaySendDateTime}"
                     Style="{StaticResource TimeTextStyle}"/>
             </Grid>
         </Grid>

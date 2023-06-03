@@ -1,4 +1,5 @@
 ﻿using ChatApp.Models;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -94,31 +95,32 @@ namespace ChatApp.Services
                 new Message
                 {
                   Sender = user6,
-                  Time = "18:32",
+                  //SendDateTimeに今日の日付で時間を18:32でデータを設定する。
+                  SendDateTime = DateTime.Now,
                   Text = "Hey there! What\'s up? Is everything ok?",
                 },
               new Message
               {
                 Sender = user1,
-                Time = "14:05",
+                  SendDateTime = DateTime.Now,
                 Text = "Can I call you back later?, I\'m in a meeting.",
               },
               new Message
               {
                 Sender = user3,
-                Time = "14:00",
+                  SendDateTime = DateTime.Now,
                 Text = "Yeah. Do you have any good song to recommend?",
               },
               new Message
               {
                 Sender = user2,
-                Time = "13:35",
+                  SendDateTime = DateTime.Now,
                 Text = "Hi! I went shopping today and found a nice t-shirt.",
               },
               new Message
               {
                 Sender = user4,
-                Time= "12:11",
+                  SendDateTime = DateTime.Now,
                 Text= "I passed you on the ride to work today, see you later.",
               },
             };
@@ -130,32 +132,32 @@ namespace ChatApp.Services
               new Message
               {
                 Sender = sender,
-                Time = "18:35",
+                  SendDateTime = DateTime.Now.AddDays(-2),
                 Text= "Hey there! What\'s up?",
               },
               new Message
               {
                 Sender = null,
-                Time = "18:36",
+                  SendDateTime = DateTime.Now.AddDays(-2),
                 Text = "Nothing. Just chilling and watching YouTube. What about you?",
               },
               new Message
               {
                 Sender = sender,
-                Time = "18:39",
+                  SendDateTime = DateTime.Now.AddDays(-1),
                 Text =
                     "Same here! Been watching YouTube for the past 5 hours despite of having so much to do! 😅",
               },              
               new Message
               {
                 Sender = sender,
-                Time = "18:39",
+                  SendDateTime = DateTime.Now.AddDays(-1),
                 Text = "It\'s hard to be productive, man 😞",
               },
               new Message
               {
                 Sender = null,
-                Time = "18:42",
+                  SendDateTime = DateTime.Now,
                 Text = "Yeah I know. I\'m in the same position 😂",
               },
             };
