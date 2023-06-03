@@ -26,17 +26,18 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="30">
-            <Label Text="ユーザ名を入力してください" />
+            <Label Text="１）ユーザ名を入力してください" />
             <Entry x:Name="UsernameEntry"
                Text="{Binding Name}"
-               Placeholder="ユーザ名を入力してください" />
+               Placeholder="ユーザ名を入力してください" 
+               Margin="20,0,0,10"/>
 
-            <Label Text="あなたのアイコンを選択してください" />
+            <Label Text="２）あなたのアイコンを選択してください" />
             <!-- SUGGESTED CONTACTS -->
             <CollectionView
-                            Grid.Column="1"
-                            ItemsSource="{Binding Users}"
-                            HeightRequest="60">
+                ItemsSource="{Binding Users}"
+                HeightRequest="60"
+                Margin="20,0,0,5">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
                                     Orientation="Horizontal" />
@@ -54,20 +55,23 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="アイコンの背景色を選択してください" />
+            <Label Text="３）アイコンの背景色を選択してください" />
             <CollectionView
-                            Grid.Column="1"
                             ItemsSource="{Binding Colors}"
-                            HeightRequest="60">
+                            HeightRequest="80">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
                                     Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame WidthRequest="50" HeightRequest="50" BorderColor="Black">
-                            <BoxView Color="{Binding .}">
-                                <!-- タップされた場合のコマンドをBindgします。-->
+                        <Frame WidthRequest="50" HeightRequest="40"
+                               BorderColor="Transparent"
+                               BackgroundColor="Transparent">
+                            <BoxView Color="{Binding .}"
+                                CornerRadius="3,3,3,3"
+                                     >
+                                <!-- タップされた場合のコマンドをBindingします。-->
                                 <BoxView.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.SelectColorCommand, Source={x:Reference UsernameEntry}}" CommandParameter="{Binding .}" />
                                 </BoxView.GestureRecognizers>
@@ -83,8 +87,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>-->
             </CollectionView>
+            <BoxView HeightRequest="2" BackgroundColor="Gray" 
+                     HorizontalOptions="FillAndExpand"
+                     Margin="0,10,0,5"/>
 
-            <Label Text="あなたのアイコン" />
+            <Label Text="あなたのアイコン：" />
 
             <Grid
             Style="{StaticResource SuggestedContainerStyle}">
@@ -99,6 +106,7 @@
                 Source="{Binding Image}"
                 Style="{StaticResource SuggestedImageStyle}"/>
             </Grid>
+            <Label Text="{Binding Name, StringFormat='あなたの名前：{0}'}" />
 
             <Button Text="登録"
                 Command="{Binding RegisterCommand}" />

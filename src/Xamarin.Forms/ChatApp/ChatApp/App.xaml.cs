@@ -14,6 +14,8 @@ namespace ChatApp
 
             InitializeComponent();
 
+            Xamarin.Essentials.Preferences.Clear();
+
             //DeviceServcieをDIコンテナに登録する
             DependencyService.Register<DeviceService>();
 
