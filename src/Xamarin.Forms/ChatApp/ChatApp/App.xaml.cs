@@ -16,9 +16,15 @@ namespace ChatApp
 
             //DeviceServcieをDIコンテナに登録する
             DependencyService.Register<DeviceService>();
-            //DeviceService = new DeviceService(Xamarin.Essentials.Preferences);
 
-            MainPage = new NavigationPage(new HomeView());
+            if (Xamarin.Essentials.Preferences.ContainsKey("User"))
+            {
+                MainPage = new NavigationPage(new HomeView());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new EntryView());
+            }
         }
 
         protected override void OnStart()

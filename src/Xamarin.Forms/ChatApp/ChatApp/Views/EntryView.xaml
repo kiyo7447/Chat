@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp.Views.EntryView"
+             xmlns:templates="clr-namespace:ChatApp.Views.Templates"
+             xmlns:viewmodel="clr-namespace:ChatApp.ViewModels">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SuggestedContainerStyle" TargetType="Grid">
+                <Setter Property="HeightRequest" Value="208" />
+                <Setter Property="WidthRequest" Value="208" />
+                <Setter Property="Margin" Value="0, 0, 12, 0" />
+            </Style>
+
+            <Style x:Key="SuggestedImageStyle" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodel:EntryViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Label Text="ユーザ名を入力してください" />
+            <Entry x:Name="UsernameEntry"
+               Text="{Binding Name}"
+               Placeholder="ユーザ名を入力してください" />
+
+            <Label Text="あなたのアイコンを選択してください" />
+            <!-- SUGGESTED CONTACTS -->
+            <CollectionView
+                            Grid.Column="1"
+                            ItemsSource="{Binding Users}"
+                            HeightRequest="60">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                                    Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:SuggestedItemTemplate>
+                            <!-- タップされた場合のコマンドをBindingします。 -->
+                            <templates:SuggestedItemTemplate.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.SelectUserCommand, Source={x:Reference UsernameEntry}}" CommandParameter="{Binding .}" />
+                            </templates:SuggestedItemTemplate.GestureRecognizers>
+
+                        </templates:SuggestedItemTemplate>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="アイコンの背景色を選択してください" />
+            <CollectionView
+                            Grid.Column="1"
+                            ItemsSource="{Binding Colors}"
+                            HeightRequest="60">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                                    Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame WidthRequest="50" HeightRequest="50" BorderColor="Black">
+                            <BoxView Color="{Binding .}">
+                                <!-- タップされた場合のコマンドをBindgします。-->
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectColorCommand, Source={x:Reference UsernameEntry}}" CommandParameter="{Binding .}" />
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
+
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!--<CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <templates:SuggestedItemTemplate />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>-->
+            </CollectionView>
+
+            <Label Text="あなたのアイコン" />
+
+            <Grid
+            Style="{StaticResource SuggestedContainerStyle}">
+                <BoxView 
+                HeightRequest="196"
+                WidthRequest="196"
+                CornerRadius="160"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="{Binding Color}"/>
+                <Image
+                Source="{Binding Image}"
+                Style="{StaticResource SuggestedImageStyle}"/>
+            </Grid>
+
+            <Button Text="登録"
+                Command="{Binding RegisterCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
