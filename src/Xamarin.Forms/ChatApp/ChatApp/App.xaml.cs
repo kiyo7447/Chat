@@ -1,4 +1,5 @@
 ﻿using ChatApp.Services;
+using ChatApp.ViewModels;
 using ChatApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -14,11 +15,12 @@ namespace ChatApp
 
             InitializeComponent();
 
-            Xamarin.Essentials.Preferences.Clear();
+            //Xamarin.Essentials.Preferences.Clear();
 
             //DeviceServcieをDIコンテナに登録する
             DependencyService.Register<DeviceService>();
 
+            // 後でMainPageを切り替えるときは、NavigationSerivceを使う
             if (Xamarin.Essentials.Preferences.ContainsKey("User"))
             {
                 MainPage = new NavigationPage(new HomeView());

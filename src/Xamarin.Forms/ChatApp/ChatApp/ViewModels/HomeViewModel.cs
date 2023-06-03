@@ -1,6 +1,7 @@
 ﻿using ChatApp.Models;
 using ChatApp.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 

@@ -106,8 +106,20 @@ namespace ChatApp.Services
 
         void CreatePageViewModelMappings()
         {
+            _mappings.Add(typeof(EntryViewModel), typeof(EntryView));
             _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
             _mappings.Add(typeof(DetailViewModel), typeof(DetailView));
+
+        }
+
+        /// <summary>
+        /// CurrentApplication.MainPageを外部から変更するためのメソッド
+        /// これはメインページを使う前にセットアップを行うために追加しました。
+        /// </summary>
+        /// <param name="page"></param>
+        public void ChangeMainPage(Page page)
+        {
+            CurrentApplication.MainPage = new NavigationPage(page); ;
         }
     }
 }

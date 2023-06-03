@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using ChatApp.Models;
 using System.Collections.ObjectModel;
 using ChatApp.Services;
+using ChatApp.Views;
 
 namespace ChatApp.ViewModels
 {
@@ -121,7 +122,7 @@ namespace ChatApp.ViewModels
             Preferences.Set("User", userJson);
 
             //Navigate to HomeView
-            NavigationService.Instance.NavigateToAsync<HomeViewModel>();
+            NavigationService.Instance.ChangeMainPage(new HomeView());
 
         }
 
