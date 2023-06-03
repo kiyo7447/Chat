@@ -14,7 +14,7 @@
                 <Setter Property="FontFamily" Value="Metropolis Medium" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
-                <Setter Property="WidthRequest" Value="160" />
+                <Setter Property="WidthRequest" Value="480" /><!-- 160 -> 480 -->
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="Margin" Value="36, 48, 0, 0" />
             </Style>
@@ -60,8 +60,8 @@
                 RowDefinitions="Auto, *">
                 <Grid
                     RowDefinitions="Auto, *">
-                    <Label
-                        Text="Chat with your friends"
+                    <Label Grid.Row="0"
+                        Text="新しいお友達と話そう！"
                         Style="{StaticResource TitleTextStyle}" />
                     <Grid      
                         Grid.Row="1"

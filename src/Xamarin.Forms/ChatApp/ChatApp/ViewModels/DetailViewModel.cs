@@ -59,7 +59,18 @@ namespace ChatApp.ViewModels
 
         public ICommand BackCommand => new Command(OnBack);
 
+        //検索コマンド
+        public ICommand SearchCommand => new Command(OnSearch);
+
+
+
+        //メッセージを送信するコマンド
         public ICommand SendMessageCommand => new Command(OnSendMessageCommand);
+
+        //TELをかけるコマンド
+        public ICommand CallTelCommand => new Command(OnCallTelCommand);
+
+        public ICommand CallVideoCommand => new Command(OnCallVideoCommand);
 
         public override Task InitializeAsync(object navigationData)
         {
@@ -94,6 +105,23 @@ namespace ChatApp.ViewModels
             //表示後に画面をスクロースする
             MessageAdded?.Invoke();
 
-         }
+        }
+
+        private void OnSearch(object obj)
+        {
+            Application.Current.MainPage.DisplayAlert("確認", "この機能は有料会員、またはポイントを使用します。", "OK");
+        }
+        private void OnCallTelCommand(object obj)
+        {
+            //「この機能は有料会員、またはポイントを使用します。」とポップアップのメッセージを表示する。
+            Application.Current.MainPage.DisplayAlert("確認", "この機能は有料会員、またはポイントを使用します。", "OK");
+        }
+
+        private void OnCallVideoCommand(object obj)
+        {
+            //ポップアップメッセージを表示する。
+            Application.Current.MainPage.DisplayAlert("確認", "この機能は有料会員、またはポイントを使用します。", "OK");
+        }
+
     }
 }
