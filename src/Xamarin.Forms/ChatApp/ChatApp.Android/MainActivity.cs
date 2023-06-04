@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace ChatApp.Droid
 {
@@ -13,6 +15,11 @@ namespace ChatApp.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            //Push通知のセットアップ（Andorid版）
+            Firebase.FirebaseApp.InitializeApp(Application);
+
+            
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773726577287",
+    "project_id": "openaichat-6fd8f",
+    "storage_bucket": "openaichat-6fd8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773726577287:android:eb70885a88e07e18848e22",
+        "android_client_info": {
+          "package_name": "com.companyname.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773726577287-5u7c3o4ek8m3kmqc767r1ccoh0fjqm31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFQEepbSAFA7iT1oCQG2QrivaEo5lO-pY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773726577287-5u7c3o4ek8m3kmqc767r1ccoh0fjqm31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

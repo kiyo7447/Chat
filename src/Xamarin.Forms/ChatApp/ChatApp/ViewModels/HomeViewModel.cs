@@ -1,5 +1,6 @@
 ﻿using ChatApp.Models;
 using ChatApp.Services;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,6 +16,8 @@ namespace ChatApp.ViewModels
         public HomeViewModel()
         {
             LoadData();
+
+
         }
 
         public ObservableCollection<User> Users
@@ -49,6 +52,16 @@ namespace ChatApp.ViewModels
 
         void OnNavigate(object parameter)
         {
+            //List<string> tags = new List<string>() { "uid-999", "did-123", "lcd-niigata", "fov-deai", "age-30" };
+
+            //((App)App.Current).SetTags(tags); ;
+
+            //List<string> tags = new List<string>() { "uid-123", "did-123", "lcd-niigata", "fov-deai", "age-30" };
+
+            // Send the tags to the Android project via MessagingCenter
+            //MessagingCenter.Send<App, List<string>>(this, "SetTags", tags);
+
+
             NavigationService.Instance.NavigateToAsync<DetailViewModel>(parameter);
         }
     }
