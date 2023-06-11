@@ -15,6 +15,7 @@ namespace ChatApp.ViewModels
 
         public HomeViewModel()
         {
+
             LoadData();
 
 
@@ -60,6 +61,16 @@ namespace ChatApp.ViewModels
 
             // Send the tags to the Android project via MessagingCenter
             //MessagingCenter.Send<App, List<string>>(this, "SetTags", tags);
+
+            // 通知サービスの初期化を実行する
+            //DependencyService.Get<INotificationService>().Initialize();
+
+
+            //Androidでは成功した
+            var service = DependencyService.Get<INotificationService>();
+            List<string> tags = new List<string>() { "uid-222", "did-123", "lcd-niigata", "fov-deai", "age-30" };
+            service.SetTags(tags.ToArray());
+
 
 
             NavigationService.Instance.NavigateToAsync<DetailViewModel>(parameter);

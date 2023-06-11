@@ -66,6 +66,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Services\AppleDeviceService.cs" />
+    <Compile Include="Services\AppleNotificationService.cs" />
+    <Compile Include="Services\MyAppleNotificationService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

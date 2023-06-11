@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ChatApp.iOS.Services;
+using ChatApp.Services;
 using Foundation;
 using UIKit;
 
@@ -24,6 +25,12 @@ namespace ChatApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            //Push通知のサービスをセットアップ（iOS版）
+            Xamarin.Forms.DependencyService.Register<INotificationService, AppleNotificationService>();
+
+            Xamarin.Forms.DependencyService.Register<IDeviceService, AppleDeviceService>();
+
 
             return base.FinishedLaunching(app, options);
         }

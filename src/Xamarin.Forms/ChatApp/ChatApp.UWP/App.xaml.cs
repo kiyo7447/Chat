@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatApp.Services;
+using ChatApp.UWP.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +31,12 @@ namespace ChatApp.UWP
         public App()
         {
             this.InitializeComponent();
+
+            //Push通知のサービスをセットアップ（UWP版）
+            Xamarin.Forms.DependencyService.Register<INotificationService, UWPNotificationService>();
+
+            Xamarin.Forms.DependencyService.Register<IDeviceService, UWPDeviceService>();    
+
             this.Suspending += OnSuspending;
         }
 

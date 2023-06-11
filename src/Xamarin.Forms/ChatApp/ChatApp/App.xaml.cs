@@ -21,19 +21,22 @@ namespace ChatApp
 
             //Xamarin.Essentials.Preferences.Clear();
 
-            //DeviceServcieをDIコンテナに登録する
-            DependencyService.Register<DeviceService>();
 
-            //NavigationServiceをDIコンテナに登録する
-            DependencyService.Register<NotificationService>();
+            //各OSごとのインスタンスを取得する。
+            //var notificationService = DependencyService.Get<NotificationService>();
 
-           // DependencyService.Get<IAnimatable>();
+
+            // DependencyService.Get<IAnimatable>();
 
             // Set the tags
             //List<string> tags = new List<string>() { "uid-444", "did-123", "lcd-niigata", "fov-deai", "age-30" };
 
             // Send the tags to the Android project via MessagingCenter
-           //MessagingCenter.Send<App, List<string>>(this, "SetTags", tags);
+            //MessagingCenter.Send<App, List<string>>(this, "SetTags", tags);
+
+
+            Debug.WriteLine($"RuntimePlatform:{Device.RuntimePlatform}");
+
 
 
             //Push通知を受け取る

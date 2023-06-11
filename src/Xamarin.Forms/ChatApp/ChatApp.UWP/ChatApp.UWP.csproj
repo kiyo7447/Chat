@@ -98,6 +98,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Services\MyUWPNotificationService.cs" />
+    <Compile Include="Services\UWPDeviceService.cs" />
+    <Compile Include="Services\UWPNotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

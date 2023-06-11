@@ -12,7 +12,7 @@ namespace ChatApp.Services
 {
 
 
-    public class DeviceService
+    public class GomiDeviceService
     {
         private const string DeviceIdKey = "DeviceId";
 
