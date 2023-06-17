@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace ChatFunctionApp
 {
-    public static class Function1
+    public static class TsetFunction
     {
-        [FunctionName("Function1")]
+        [FunctionName("TestFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)

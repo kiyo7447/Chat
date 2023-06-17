@@ -1,8 +1,13 @@
 ﻿using ChatApp.Models;
 using ChatApp.Services;
+using DataModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -88,16 +93,24 @@ namespace ChatApp.ViewModels
             _ = NavigationService.Instance.NavigateBackAsync();
         }
 
-        void OnSendMessageCommand()
+        async void OnSendMessageCommand()
         {
             //入力したメッセージが空の場合は何もしない
             if (string.IsNullOrEmpty(_entiryMessage))
                 return;
 
-            _messages.Add(new Message { Sender = _user, Text = "かずま", SendDateTime = DateTime.Now });
+            //データ送信
+            var retMessage = await PostDataToAzureFunctionAsync(new MyChat { MyGuid = "ok", TalkGuid ="aaa", Property1 = _entiryMessage, Property2 = 30 });
+
+
+
+            _messages.Add(new Message { Sender = _user, Text = retMessage, SendDateTime = DateTime.Now });
 
             _messages.Add(new Message { Sender = null, Text = _entiryMessage, SendDateTime = DateTime.Now });
             //NavigationService.Instance.NavigateBackAsync();
+
+
+
 
             //入力したメッセージをクリアする
             EntryMessage = string.Empty;
@@ -123,5 +136,28 @@ namespace ChatApp.ViewModels
             Application.Current.MainPage.DisplayAlert("確認", "この機能は有料会員、またはポイントを使用します。", "OK");
         }
 
+        public async Task<string> PostDataToAzureFunctionAsync(MyChat data)
+        {
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.PostAsync("https://chatfunctionapp20230611.azurewebsites.net/api/ReceiveMessageFunction?code=-HcHue9YaNUlLJUiM3Cb948YyJyvwyy068bUUUVkFOIDAzFuunU6yw==", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    // レスポンスボディを読み込む
+                    Debug.WriteLine($"Response from Azure Function: {responseString}");
+                    return responseString;
+                }
+                else
+                {
+                    Debug.WriteLine($"Failed to post data: {response.StatusCode}");
+                    return $"Failed to post data: {response.StatusCode}";
+                    //throw new SystemException($"Failed to post data: {response.StatusCode}");
+                }
+            }
+        }
     }
 }

@@ -132,12 +132,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ChatApp\ChatApp.csproj">
-      <Project>{3BB56D06-3478-4CB3-8BDF-790943CDD4C9}</Project>
-      <Name>ChatApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\emoji8.png" />
   </ItemGroup>
   <ItemGroup>
@@ -167,5 +161,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\emoji7.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChatApp\ChatApp.csproj">
+      <Project>{0482c1dd-372a-4f33-a99c-7d1c17cf2336}</Project>
+      <Name>ChatApp</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

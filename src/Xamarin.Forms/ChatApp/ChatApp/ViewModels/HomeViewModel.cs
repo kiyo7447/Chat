@@ -1,7 +1,13 @@
 ﻿using ChatApp.Models;
 using ChatApp.Services;
+using DataModel;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -51,7 +57,7 @@ namespace ChatApp.ViewModels
             //RecentChat.Add(new Message { Sender = sender, Text = "かずま", Time = "12:00" });
         }
 
-        void OnNavigate(object parameter)
+         void OnNavigate(object parameter)
         {
             //List<string> tags = new List<string>() { "uid-999", "did-123", "lcd-niigata", "fov-deai", "age-30" };
 
@@ -73,7 +79,10 @@ namespace ChatApp.ViewModels
 
 
 
+
             NavigationService.Instance.NavigateToAsync<DetailViewModel>(parameter);
         }
+
+
     }
 }
