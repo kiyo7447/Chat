@@ -104,6 +104,8 @@ namespace ChatApp.ViewModels
 
 
 
+
+
             _messages.Add(new Message { Sender = _user, Text = retMessage, SendDateTime = DateTime.Now });
 
             _messages.Add(new Message { Sender = null, Text = _entiryMessage, SendDateTime = DateTime.Now });

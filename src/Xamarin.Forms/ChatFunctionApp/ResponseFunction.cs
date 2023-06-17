@@ -16,7 +16,8 @@ namespace ChatFunctionApp
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
 
-            var tableClient = new TableClient("DefaultEndpointsProtocol=https;AccountName=openaichatstorage2;AccountKey=cTl1sp+iRdbtKAKhFDXGjwCoJjaTXfzd+I/kkmCpVQeTZniPqNix1flgiESEg4v0Zrj2u4bsnv6o+AStGM2BjQ==;EndpointSuffix=core.windows.net", "chat");
+            var connectionString = System.Environment.GetEnvironmentVariable("TableStorageConnectionSetting");
+            var tableClient = new TableClient(connectionString, "chat");
 
             var entity = new TableEntity("partition1", Guid.NewGuid().ToString())
             {
@@ -25,11 +26,11 @@ namespace ChatFunctionApp
             try
             {
                 tableClient.AddEntityAsync(entity);
-
+                log.LogInformation($"メッセージをTable Storageに保存しました。");
             }
             catch (Exception ex)
             {
-                log.LogError(ex.Message);
+                log.LogError($"Error Message:{ex.ToString()}");
                 throw;
             }
 

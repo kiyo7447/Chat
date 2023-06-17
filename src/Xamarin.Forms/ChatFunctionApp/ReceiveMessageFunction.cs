@@ -25,22 +25,32 @@ namespace ChatFunctionApp
             [ServiceBus("chatqueue", Connection = "ServiceBusSendConnection")] IAsyncCollector<MyChat> outputQueueItem,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            try
+            {
+                log.LogInformation("C# HTTP trigger function processed a request.");
+
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                var data = JsonConvert.DeserializeObject<MyChat>(requestBody);
 
-            log.LogInformation("メッセージをAzure Service Busに送信しました。");
+                log.LogInformation("受信メッセージのシリアライズ成功");
 
-            var data = JsonConvert.DeserializeObject<MyChat>(requestBody);
+                // メッセージを作成して送信
+                await outputQueueItem.AddAsync(data);
+                log.LogInformation("メッセージをAzure Service Busに送信しました。");
 
-            // メッセージを作成して送信
-            await outputQueueItem.AddAsync(data);
+                string responseMessage = $"Received Message: {data.Property1}, {data.Property2}";
 
-            string responseMessage = $"Received Message: {data.Property1}, {data.Property2}";
-            log.LogInformation($"Received Message:{responseMessage}");
+                log.LogInformation($"Received Message:{responseMessage}");
+                return new OkObjectResult(responseMessage);
+            }
+            catch (Exception ex)
+            {
+                log.LogError($"Error Message:{ex.ToString()}");
 
-            return new OkObjectResult(responseMessage);
+                throw;
+            }
         }
     }
 }
