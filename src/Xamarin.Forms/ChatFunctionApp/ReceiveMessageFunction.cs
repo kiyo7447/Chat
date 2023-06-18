@@ -7,29 +7,50 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using DataModel;
+using Azure.Messaging.ServiceBus;
 
 namespace ChatFunctionApp
 {
     public static class ReceiveMessageFunction
     {
+
+
+
         [FunctionName("ReceiveMessageFunction")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            //HttpTriggerでMyTalkクラスを受け取る
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            //Azure Service Busへの接続文字列を指定
+            [ServiceBus("chatqueue", Connection = "ServiceBusSendConnection")] IAsyncCollector<MyChat> outputQueueItem,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            try
+            {
+                log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string name = req.Query["name"];
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                var data = JsonConvert.DeserializeObject<MyChat>(requestBody);
 
-            return new OkObjectResult(responseMessage);
+                log.LogInformation("受信メッセージのシリアライズ成功");
+
+                // メッセージを作成して送信
+                await outputQueueItem.AddAsync(data);
+                log.LogInformation("メッセージをAzure Service Busに送信しました。");
+
+                string responseMessage = $"Received Message: {data.Property1}, {data.Property2}";
+
+                log.LogInformation($"Received Message:{responseMessage}");
+                return new OkObjectResult(responseMessage);
+            }
+            catch (Exception ex)
+            {
+                log.LogError($"Error Message:{ex.ToString()}");
+
+                throw;
+            }
         }
     }
 }

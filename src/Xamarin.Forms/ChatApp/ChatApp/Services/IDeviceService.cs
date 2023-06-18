@@ -6,5 +6,7 @@ namespace ChatApp.Services
 {
     public interface IDeviceService
     {
+
+
     }
 }

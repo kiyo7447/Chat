@@ -21,7 +21,6 @@ namespace ChatApp.Droid.Services
 {
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
     [Service(Name = "com.yourcompany.yourapp.MyFirebaseMessagingService", Exported = false), IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
-    [assembly: Dependency(typeof(MyFirebaseMessagingService))]
     public class MyFirebaseMessagingService : FirebaseMessagingService 
     {
         //コンストラクタ

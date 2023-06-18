@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DataModel\DataModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Views\Templates\SenderChatMessageItemTemplate.xaml.cs">
       <DependentUpon>SenderChatMessageItemTemplate.xaml</DependentUpon>
     </Compile>

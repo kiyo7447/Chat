@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ChatApp.iOS.Services;
 using ChatApp.Services;
+using ChatApp.iOS.Services;
 using Foundation;
 using UIKit;
 
