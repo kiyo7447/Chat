@@ -145,7 +145,7 @@ namespace ChatApp.ViewModels
 
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsync("https://chatfunctionapp20230611.azurewebsites.net/api/ReceiveMessageFunction?code=-HcHue9YaNUlLJUiM3Cb948YyJyvwyy068bUUUVkFOIDAzFuunU6yw==", content);
+                var response = await client.PostAsync("https://chatfunctionapp20230617.azurewebsites.net/api/ReceiveMessageFunction?code=oLKFCfXysKcpotCklMeZO47X8U9RL0yu6hndEr5nrnvdAzFun2wNLg==", content);
                 if (response.IsSuccessStatusCode)
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
