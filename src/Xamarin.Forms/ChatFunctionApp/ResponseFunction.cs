@@ -41,7 +41,7 @@ namespace ChatFunctionApp
 
             try
             {
-                tableClient.AddEntityAsync(entity);
+                await tableClient.AddEntityAsync(entity);
                 log.LogInformation($"メッセージをTable Storageに保存しました。");
             }
             catch (Exception ex)

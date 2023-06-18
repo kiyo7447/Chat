@@ -22,9 +22,9 @@ namespace ChatFunctionApp.Services
         private readonly HttpClient client = new HttpClient();
 
         //環境変数「OPENAI_API_KEY」を取得して、変数「apiKey」に設定する。
-        private string? _apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+        private string _apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
 
-        private StorageEnum _storageEnum = StorageEnum.Memory;
+        //private StorageEnum _storageEnum = StorageEnum.Memory;
 
         //ログを実装します。
         private readonly ILogger _logger;
@@ -100,7 +100,7 @@ namespace ChatFunctionApp.Services
             //JsonConvert.SerializeObject(requestPayload)をConsoleに出力する。
             //Console.WriteLine(JsonConvert.SerializeObject(requestPayload));
 
-            HttpResponseMessage? response = null;
+            HttpResponseMessage response = null;
 
             //次の処理が例外が無くなるまで5回繰り返す。
             for (int i = 0; i < 5; i++)
@@ -160,8 +160,8 @@ namespace ChatFunctionApp.Services
             if (response?.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var responseString = await response.Content.ReadAsStringAsync();
-                dynamic? responseObject = JsonConvert.DeserializeObject(responseString);
-                string? aiResponse = responseObject?.choices[0].message.content.ToString().Trim();
+                dynamic responseObject = JsonConvert.DeserializeObject(responseString);
+                string aiResponse = responseObject?.choices[0].message.content.ToString().Trim();
                 return aiResponse ?? "";
 
             }
